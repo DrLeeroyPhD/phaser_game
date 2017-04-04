@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
-	<title>Phaser - Making your first game, part 1</title>
+	<title>Phaser First Game</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
     <style type="text/css">
         body {
@@ -74,7 +74,7 @@ function create() {
   // Enable physics on player
   game.physics.arcade.enable(player);
   
-  player.body.bounce.y = 0.2;
+  player.body.bounce.y = 0.15;
   player.body.gravity.y = GRAVITY;
   player.body.collideWorldBounds = true;
   
@@ -82,22 +82,27 @@ function create() {
   player.animations.add('left', [0,1,2,3], 10, true);
   player.animations.add('right', [5,6,7,8], 10, true);
   
+  
   /*** Stars ***/
   stars = game.add.group();
   
   stars.enableBody = true;
   
-  // Create 12 Stars - evenly spaced
-  for (var i = 0; i < 12; i++){
+  // Create Stars - evenly spaced
+  
+  const STARS = 10;
+  const SPACING = 800 / STARS;
+  
+  for (var i = 0; i < STARS; i++){
     
     // Create a star in the 'stars' group
-    var star = stars.create(i * 70, 0, 'star');
+    var star = stars.create(i * SPACING + 20, 0, 'star');
     
     // Gravity, do work
     star.body.gravity.y = 100;
     
     // Assign random bounce value
-    star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    star.body.bounce.y = 0.4 + Math.random() * 0.5;
   }
   
   /*** Score ***/
